@@ -183,13 +183,13 @@ table(combined_data$blood_pressure_cat_new, combined_data$blood_pressure_cat)
 table(combined_data$high_blood_pressure)
 
 # clean dataset where either new_bmi or blood_pressure data is present
-combined_data_cleaned <- combined_data %>%
-  filter(!is.na(bmi_category) | !is.na(blood_pressure_cat))
+#combined_data <- combined_data %>%
+  #filter(!is.na(bmi_category) | !is.na(blood_pressure_cat))
 
 
 
 # Extracting longitude and latitude
-combined_data_cleaned <- combined_data_cleaned %>%
+combined_data <- combined_data %>%
   mutate(
     geometry = as.character(geometry),
     Long_x = format(as.numeric(str_extract(geometry, "(?<=c\\()[-\\d.]+")), nsmall = 6),
@@ -197,20 +197,20 @@ combined_data_cleaned <- combined_data_cleaned %>%
 
 
 # Combine 'overweight' and 'obese' into 'overweight/obese'
-combined_data_cleaned <- combined_data_cleaned %>%
+combined_data  <- combined_data %>%
   mutate(bmi_category = recode(bmi_category,
                                "overweight" = "overweight/obese",
                                "obese" = "overweight/obese"))
 
 #  factor levels BMI Category
-combined_data_cleaned$bmi_category <- factor(
-  combined_data_cleaned$bmi_category,
+combined_data$bmi_category <- factor(
+  combined_data$bmi_category,
   levels = c("too thin", "Normal", "overweight/obese"),
   labels = c(1, 2, 3),
   ordered = TRUE
 )
-table(combined_data_cleaned$bmi_category)
+table(combined_data$bmi_category)
 
-table(combined_data_cleaned$blood_pressure_cat)
-table(combined_data_cleaned$blood_pressure_cat_new)
+table(combined_data$blood_pressure_cat)
+table(combined_data$blood_pressure_cat_new)
 

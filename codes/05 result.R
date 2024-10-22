@@ -10,7 +10,7 @@ source(here("codes", "04 data_harmonization_merging.R"))
 
 # converting the data type as numberic
 
-df <- combined_data_cleaned %>% 
+df <- combined_data %>% 
   mutate (
     weight = as.numeric(sample_wt),
     psu = as.numeric(hv021)

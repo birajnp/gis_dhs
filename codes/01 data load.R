@@ -15,12 +15,11 @@ dhs22_personal <- read_dta(here("raw_dataset","household_member","NPPR82FL.DTA")
 
 #calculating sample weight
 dhs22_personal <- dhs22_personal %>%
-  mutate(sample_wt = hv005/1000000)
-
+  mutate(sample_wt = hv005/100000)
 
 
 #writing sample label
 
 dhs22_personal <- forcats::as_factor(dhs22_personal, only_labelled = TRUE)
-write.csv(t(data.frame(var_label(dhs22_personal))), "personal_data_labels.csv", na="")
+write.csv(t(data.frame(var_label(dhs22_personal))), "personal_data_labels.csv", na = "")
 

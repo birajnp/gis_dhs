@@ -108,7 +108,7 @@ b <- dhs22_personal %>%
     hv270,
     
     #samplewt to gps
-    OBJECTID:District)
+    OBJECTID:geometry)
 
 
 
