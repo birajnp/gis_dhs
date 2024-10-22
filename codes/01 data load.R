@@ -1,8 +1,5 @@
 rm(list=ls())
 
-#-----------------1. Install, load libraries and dataset-------------------
-#Step-1: Install and load library
-
 Packages <- c("sf","here","gtsummary","foreign","survey",'labelled',"readxl", "tidyverse", "haven","rockchalk", "forcats")
 
 
