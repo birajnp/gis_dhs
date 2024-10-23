@@ -41,7 +41,7 @@ female_data <- select(
   )
 )
 
-# renaming blood pressure variables
+# renaming variables
 male_data <- male_data %>% rename("systolic_bp" = "mbp24",
                                   "diastolic_bp" = "mbp25",
                                   "blood_pressure_cat" = "mbp26",
@@ -53,7 +53,7 @@ male_data <- male_data %>% rename("systolic_bp" = "mbp24",
                                   )
 
 
-# renaming blood pressure variables
+# renaming variables
 female_data <- female_data %>% rename("systolic_bp" = "wbp24",
                                       "diastolic_bp" = "wbp25",
                                       "blood_pressure_cat" = "wbp26",
@@ -134,8 +134,8 @@ for (var in names(labels)) {
 
 # converting a specific factor column to numeric and createing a new varaibles
 combined_data$new_bmi <- as.numeric(as.character(combined_data$BMI))
-combined_data$new_systolic <- as.numeric(as.character(combined_data$systolic_bp))
-combined_data$new_diastolic <- as.numeric(as.character(combined_data$diastolic_bp))
+combined_data$systolic_bp <- as.numeric(as.character(combined_data$systolic_bp))
+combined_data$diastolic_bp <- as.numeric(as.character(combined_data$diastolic_bp))
 combined_data$new_height <- as.numeric(as.character(combined_data$height))
 combined_data$new_weight <- as.numeric(as.character(combined_data$weight))
 
@@ -149,7 +149,7 @@ summary(combined_data$new_bmi)
 combined_data$bmi_category <- cut(
   combined_data$new_bmi,
   breaks = c(-Inf, 18.5, 24.9, 29.9, Inf),
-  labels = c("too thin", "Normal", "overweight", "obese"),
+  labels = c("underweight", "Normal", "overweight", "obese"),
   right = TRUE)
 
 
@@ -157,34 +157,62 @@ combined_data$bmi_category <- cut(
 
 
 # Create a new variable for high blood pressure
-combined_data$high_blood_pressure <- ifelse(
-  combined_data$new_systolic >= 140 | combined_data$new_diastolic >= 90,
-  1,  # Indicates high blood pressure
-  0   # Indicates normal blood pressure
-)
+# combined_data$high_blood_pressure <- ifelse(
+#   combined_data$systolic_bp >= 140 | combined_data$diastolic_bp >= 90,
+#   1,  # Indicates high blood pressure
+#   0   # Indicates normal blood pressure
+# )
+
+
+
+combined_data <- combined_data %>%
+  mutate(
+    high_blood_pressure = ifelse(
+      systolic_bp >= 140 | diastolic_bp >= 90,
+      1,  # Indicates high blood pressure
+      0   # Indicates normal blood pressure
+    ),
+    case_column = ifelse(
+      high_blood_pressure == 1, 
+      1,  # Indicates case (high blood pressure)
+      NA  # NA for non-cases
+    ),
+    control_column = ifelse(
+      high_blood_pressure == 0, 
+      1,  # Indicates control (normal blood pressure)
+      NA  # NA for non-controls
+    )
+  )
+
+
+
+
 
 
 # creating catagorized blood pressure
+
 combined_data <- combined_data %>%
   mutate(blood_pressure_cat_new = case_when(
-    new_systolic < 120 & new_diastolic < 80 ~ "Optimal",
-    (new_systolic >= 120 & new_systolic <= 129) | (new_diastolic >= 80 & new_diastolic <= 84) ~ "Normal",
-    (new_systolic >= 130 & new_systolic <= 139) | (new_diastolic >= 85 & new_diastolic <= 89) ~ "High normal",
-    (new_systolic >= 140 & new_systolic <= 159) | (new_diastolic >= 90 & new_diastolic <= 99) ~ "Grade 1, mildly elevated",
-    (new_systolic >= 160 & new_systolic <= 179) | (new_diastolic >= 100 & new_diastolic <= 109) ~ "Grade 2, moderately elevated",
-    (new_systolic >= 180) | (new_diastolic >= 110) ~ "Grade 3, severely elevated",
-    TRUE ~ NA_character_  # This handles any cases that don't fit above
-  ))
+    systolic_bp < 120 & diastolic_bp < 80 ~ "Normal",
+    systolic_bp >= 120 & systolic_bp < 130 & diastolic_bp < 80 ~ "Elevated",
+    (systolic_bp >= 130) | (diastolic_bp >= 80)  ~ "Hypertensive",
+    TRUE ~ NA_character_  # Handle any cases that don't fit above
+  )) %>% 
+  mutate(blood_pressure_cat_new = factor ( blood_pressure_cat_new,
+                                         levels = c(1, 2, 3),
+                                         labels = c("Normal", "Elevated", "Hypertensive")))
 
 
-
+table(combined_data$blood_pressure_cat_new)
 
 table(combined_data$blood_pressure_cat_new, combined_data$blood_pressure_cat)
 table(combined_data$high_blood_pressure)
 
+
+
 # clean dataset where either new_bmi or blood_pressure data is present
-#combined_data <- combined_data %>%
-  #filter(!is.na(bmi_category) | !is.na(blood_pressure_cat))
+combined_data <- combined_data %>%
+  filter(!is.na(bmi_category) | !is.na(blood_pressure_cat))
 
 
 
@@ -205,12 +233,24 @@ combined_data  <- combined_data %>%
 #  factor levels BMI Category
 combined_data$bmi_category <- factor(
   combined_data$bmi_category,
-  levels = c("too thin", "Normal", "overweight/obese"),
+  levels = c("underweight", "Normal", "overweight/obese"),
   labels = c(1, 2, 3),
   ordered = TRUE
 )
+
+
+
 table(combined_data$bmi_category)
 
 table(combined_data$blood_pressure_cat)
 table(combined_data$blood_pressure_cat_new)
+
+sum(!is.na(dhs22_personal$mbp24))
+sum(!is.na(dhs22_personal$wbp24))
+sum(!is.na(combined_data$blood_pressure_cat_new))
+sum(!is.na(combined_data$blood_pressure_cat))
+
+sum(!is.na(combined_data$BMI))
+sum(!is.na(combined_data$bmi_category))
+sum(is.na(dhs22_personal$hb40))
 

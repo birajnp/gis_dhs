@@ -38,12 +38,12 @@ summary_stats <- svy_dataset %>%
                  #hv024:hv025, # type of residency
                  shecoreg, # ecological belt
                  blood_pressure_cat,  bmi_category,
-                 new_systolic, new_diastolic, hv222, hv223,
-                 diagnosed_HTN, hv270, PR_NAME,
+                 systolic_bp, diastolic_bp, hv222, hv223,
+                 diagnosed_HTN, hv270
                
     ),
     statistic = list(all_categorical() ~ "{n} ({p})", all_continuous() ~ "{mean} ({sd})"),
-    digits = list(all_categorical() ~ c(0,1), all_continuous() ~ c(1,1,1))
+    digits = list(all_categorical() ~ c(0,1), all_continuous() ~ c(1, 1, 1))
   ) %>%
   add_ci(
     method = all_continuous() ~ "svymean",
@@ -52,9 +52,32 @@ summary_stats <- svy_dataset %>%
   )
 
 
+write.csv(svy_dataset, "asdf.csv")
 
+
+selected <- svy_dataset(selectc(blood_pressure_cathv104,  hv105, hv115,  #sex of respondent # age # current marital status
+                                
+                                sh17b1, # education
+                                #hv106,
+                                #hv107,  #Education level
+                                #hv040, # cluster elevation
+                                #hv024:hv025, # type of residency
+                                shecoreg, # ecological belt
+                                blood_pressure_cat,  bmi_category,
+                                systolic_bp, diastolic_bp, hv222, hv223,
+                                diagnosed_HTN, hv270))
 
 
 print(summary_stats)
 
+
+
+#Selecting specific columns from combined_data
+selected <- combined_data %>%
+  select(DHSID, hv021, sample_wt, hv104, hv105, hv115, sh17b1, 
+         high_blood_pressure, blood_pressure_cat_new,case_htn, control_htn,
+         bmi_category,
+         DISTRICT, PR_NAME, Long_x, Lati_y)
+
+write.csv(selected, "data_selected_gis.csv")
 
