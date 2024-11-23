@@ -90,3 +90,56 @@ summary(bmi_sex_model)
 
 
 vcov(bmi_sex_model)
+
+
+
+
+
+
+#===================================================================================
+#===================================================================================
+#htn model
+# Sex and blood pressure
+sex_model <- svyolr(blood_pressure_cat_numeric ~ hv104, 
+                    design = svy_dataset)
+summary(sex_model)
+
+# Age and blood pressure
+age_model <- svyolr(blood_pressure_cat_numeric ~ age_cat, 
+                    design = svy_dataset)
+summary(age_model)
+
+# Marital status and blood pressure
+marital_model <- svyolr(blood_pressure_cat_numeric ~ marital_status, 
+                        design = svy_dataset)
+summary(marital_model)
+
+# BMI and blood pressure
+bmi_model <- svyolr(blood_pressure_cat_numeric ~ bmi_category, 
+                    design = svy_dataset)
+summary(bmi_model)
+
+# Education and blood pressure
+education_model <- svyolr(blood_pressure_cat_numeric ~ edu_cat, 
+                          design = svy_dataset)
+summary(education_model)
+
+# Wealth and blood pressure
+wealth_model <- svyolr(blood_pressure_cat_numeric ~ wealth_cat, 
+                       design = svy_dataset)
+summary(wealth_model)
+
+# Urban/Rural residence and blood pressure
+residence_model <- svyolr(blood_pressure_cat_numeric ~ hv025, 
+                          design = svy_dataset)
+summary(residence_model)
+
+# Region and blood pressure
+region_model <- svyolr(blood_pressure_cat_numeric ~ shecoreg, 
+                       design = svy_dataset)
+summary(region_model)
+
+exp(coef(region_model))
+
+exp(confint(region_model))
+summary(region_model)$coefficients[1:2]  # Assuming 3 categories -> 2 intercepts
