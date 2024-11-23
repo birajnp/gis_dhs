@@ -12,6 +12,10 @@ male_data <- b %>%
 female_data <- b %>% 
   filter(hv104 == "female")
 
+sum(!is.na(female_data$ha40))
+
+sum(!is.na(male_data$hb40))
+
 # removing female data in male dataset
 male_data <- select(
   male_data,  
@@ -70,7 +74,7 @@ combined_data <- rbind(female_data, male_data)
 
 
 
-
+sum(!is.na(combined_data$BMI))
 
 
 # Define labels for all variables, including NULLs
@@ -131,7 +135,6 @@ for (var in names(labels)) {
 }
 
 
-
 # converting a specific factor column to numeric and createing a new varaibles
 combined_data$new_bmi <- as.numeric(as.character(combined_data$BMI))
 combined_data$systolic_bp <- as.numeric(as.character(combined_data$systolic_bp))
@@ -148,12 +151,18 @@ summary(combined_data$new_bmi)
 # creating a new categorical variable for obesity
 combined_data$bmi_category <- cut(
   combined_data$new_bmi,
-  breaks = c(-Inf, 18.5, 24.9, 29.9, Inf),
-  labels = c("underweight", "Normal", "overweight", "obese"),
-  right = TRUE)
+  breaks = c(-Inf, 18.5, 23, 25, Inf),
+  labels = c("underweight", "Normal", "overweight", "obese"))
 
 
+combined_data$bmi_category_nr_ob <- cut(
+  combined_data$new_bmi,
+  breaks = c(-Inf, 23, Inf),
+  labels = c("Normal", "Overweight"))
 
+
+table(combined_data$bmi_category)
+table(combined_data$bmi_category_nr_ob)
 
 
 # Create a new variable for high blood pressure
@@ -172,12 +181,12 @@ combined_data <- combined_data %>%
       1,  # Indicates high blood pressure
       0   # Indicates normal blood pressure
     ),
-    case_column = ifelse(
+    case_htn = ifelse(
       high_blood_pressure == 1, 
       1,  # Indicates case (high blood pressure)
       NA  # NA for non-cases
     ),
-    control_column = ifelse(
+    control_htn = ifelse(
       high_blood_pressure == 0, 
       1,  # Indicates control (normal blood pressure)
       NA  # NA for non-controls
@@ -185,25 +194,29 @@ combined_data <- combined_data %>%
   )
 
 
-
-
-
-
-# creating catagorized blood pressure
-
+# Create categorized blood pressure
 combined_data <- combined_data %>%
   mutate(blood_pressure_cat_new = case_when(
     systolic_bp < 120 & diastolic_bp < 80 ~ "Normal",
     systolic_bp >= 120 & systolic_bp < 130 & diastolic_bp < 80 ~ "Elevated",
-    (systolic_bp >= 130) | (diastolic_bp >= 80)  ~ "Hypertensive",
-    TRUE ~ NA_character_  # Handle any cases that don't fit above
-  )) %>% 
-  mutate(blood_pressure_cat_new = factor ( blood_pressure_cat_new,
-                                         levels = c(1, 2, 3),
-                                         labels = c("Normal", "Elevated", "Hypertensive")))
+    (systolic_bp >= 130) | (diastolic_bp >= 80) ~ "Hypertensive",
+    TRUE ~ NA_character_  # Handle any values that don't match
+  ))
+
+# Create numeric category based on the character category
+combined_data <- combined_data %>%
+  mutate(blood_pressure_cat_numeric = case_when(
+    blood_pressure_cat_new == "Normal" ~ 1,
+    blood_pressure_cat_new == "Elevated" ~ 2,
+    blood_pressure_cat_new == "Hypertensive" ~ 3,
+    TRUE ~ NA_real_  # Handle any values that don't match
+  ))
 
 
-table(combined_data$blood_pressure_cat_new)
+
+                                            
+                                            
+table(combined_data$blood_pressure_cat_numeric)
 
 table(combined_data$blood_pressure_cat_new, combined_data$blood_pressure_cat)
 table(combined_data$high_blood_pressure)
@@ -225,19 +238,64 @@ combined_data <- combined_data %>%
 
 
 # Combine 'overweight' and 'obese' into 'overweight/obese'
-combined_data  <- combined_data %>%
-  mutate(bmi_category = recode(bmi_category,
-                               "overweight" = "overweight/obese",
-                               "obese" = "overweight/obese"))
+combined_data <- combined_data %>%
+  mutate(bmi_category = case_when(
+    bmi_category %in% c("overweight", "obese") ~ "overweight/obese",
+    TRUE ~ as.character(bmi_category)
+  ))
+
+
+print(table(combined_data$bmi_category))
 
 #  factor levels BMI Category
 combined_data$bmi_category <- factor(
   combined_data$bmi_category,
   levels = c("underweight", "Normal", "overweight/obese"),
   labels = c(1, 2, 3),
-  ordered = TRUE
-)
+  ordered = TRUE)
 
+
+
+
+# age categories
+combined_data <- combined_data |> mutate (age_cat = case_when(
+  hv105 <= 39 ~ "16-39",
+  hv105 > 39 & hv105 <= 59 ~ "40-59",
+  hv105 >= 60 ~ "60+"))
+
+
+
+# education category
+combined_data <- combined_data %>% mutate(edu_cat = case_when(
+  sh17b1 == "no education" ~ "No education",
+  sh17b1 == "don't know" ~ "No education",
+  sh17b1 == "lower basic education (1-5)" ~ "Basic Education",
+  sh17b1 == "upper basic education (6-8)" ~ "Basic Education",
+  sh17b1 == "lower secondary (9-10)"  ~ "Secondary or Higher",
+  sh17b1 == "higher secondary (11-12)"  ~ "Secondary or Higher",
+  sh17b1 == "more than secondary (13 and above)" ~ "Secondary or Higher"))
+
+# marital status
+combined_data <- combined_data %>%
+  mutate(marital_status = case_when(
+      hv115 == "widowed" ~ "divorced/separated/widowed",
+      hv115 == "divorced/sepearated" ~ "divorced/separated/widowed",
+      hv115 == "married" ~ "Married",
+      hv115 == "never married" ~ "Unmarried"
+    ))
+    
+
+
+
+table(combined_data$marital_status)
+
+combined_data <- combined_data %>% 
+  mutate(wealth_cat = case_when(hv270 == "poorest" ~ "Poor",
+                                hv270 == "poorer" ~ "Poor",
+                                hv270 == "middle" ~ "Middle",
+                                hv270 == "richer" ~ "Rich",
+                                hv270 == "richest" ~ "Rich"))
+                             
 
 
 table(combined_data$bmi_category)
@@ -253,4 +311,6 @@ sum(!is.na(combined_data$blood_pressure_cat))
 sum(!is.na(combined_data$BMI))
 sum(!is.na(combined_data$bmi_category))
 sum(is.na(dhs22_personal$hb40))
+
+table(combined_data$bmi_category)
 

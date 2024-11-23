@@ -124,3 +124,4 @@ b <- b %>% filter(hv105 >= 15)
 
 summary(dhs22_personal$ha13)
 summary(dhs22_personal$hb40)
+

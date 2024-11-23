@@ -1,0 +1,15 @@
+"","OR","2.5 %","97.5 %","p-value"
+"hv104female",1.13,1.03,1.22,0.007
+"age_cat40-59",1.73,1.55,1.93,0
+"age_cat60+",0.81,0.69,0.94,0.008
+"marital_statusdivorced/separated/widowed",3.46,2.77,4.26,0
+"marital_statusMarried",4.14,3.71,4.62,0
+"edu_catBasic Education",1.43,1.28,1.6,0
+"edu_catSecondary or Higher",1.6,1.4,1.82,0
+"wealth_catMiddle",1.68,1.48,1.9,0
+"wealth_catRich",3.16,2.77,3.6,0
+"hv025rural",0.85,0.76,0.96,0.007
+"shecoregmountain",1.73,1.38,2.18,0
+"shecoreghill",1.99,1.77,2.25,0
+"1|2",1.45,1.22,1.72,0
+"2|3",16.78,13.87,20.09,0
