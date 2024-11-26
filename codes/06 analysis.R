@@ -1,11 +1,8 @@
 #library(here)
 #source(here("codes", "05 result.R"))
-library(nnet)
-library(psycho)
-library(sjPlot)
 
 
-Packages <- c("sf","here","gtsummary","foreign","survey",'labelled',"readxl", 
+Packages <- c("sf", "here","gtsummary","foreign","survey",'labelled',"readxl", 
               "tidyverse", "haven","rockchalk", "forcats", "nnet",
               "psycho", "sjPlot")
 
