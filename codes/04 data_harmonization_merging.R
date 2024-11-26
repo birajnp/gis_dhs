@@ -158,7 +158,7 @@ combined_data$bmi_category <- cut(
 combined_data$bmi_category_nr_ob <- cut(
   combined_data$new_bmi,
   breaks = c(-Inf, 23, Inf),
-  labels = c("Normal", "Overweight"))
+  labels = c(0, 1)) # o normal #1 overweright
 
 
 table(combined_data$bmi_category)
@@ -177,21 +177,19 @@ table(combined_data$bmi_category_nr_ob)
 combined_data <- combined_data %>%
   mutate(
     high_blood_pressure = ifelse(
-      systolic_bp >= 140 | diastolic_bp >= 90,
-      1,  # Indicates high blood pressure
-      0   # Indicates normal blood pressure
-    ),
-    case_htn = ifelse(
-      high_blood_pressure == 1, 
-      1,  # Indicates case (high blood pressure)
-      NA  # NA for non-cases
-    ),
-    control_htn = ifelse(
-      high_blood_pressure == 0, 
-      1,  # Indicates control (normal blood pressure)
-      NA  # NA for non-controls
-    )
-  )
+      is.na(systolic_bp) | is.na(diastolic_bp), NA_real_,
+      ifelse(systolic_bp >= 130 | diastolic_bp >= 80,
+             1,  # Indicates high blood pressure
+             0)))  # Indicates normal blood pressure
+  
+
+sum(!is.na(combined_data$diastolic_bp))
+
+table(combined_data$high_blood_pressure)
+
+length(combined_data$diastolic_bp)
+
+
 
 
 # Create categorized blood pressure
@@ -213,7 +211,7 @@ combined_data <- combined_data %>%
   ))
 
 
-
+table(combined_data$systolic_bp)
                                             
                                             
 table(combined_data$blood_pressure_cat_numeric)
@@ -313,4 +311,8 @@ sum(!is.na(combined_data$bmi_category))
 sum(is.na(dhs22_personal$hb40))
 
 table(combined_data$bmi_category)
+
+
+sum(!is.na(combined_data$high_blood_pressure))
+sum(!is.na(combined_data$systolic_bp))
 

@@ -1,8 +1,13 @@
-library(here)
-source(here("codes", "05 result.R"))
+#library(here)
+#source(here("codes", "05 result.R"))
+library(nnet)
+library(psycho)
+library(sjPlot)
 
 
-Packages <- c("sf","here","gtsummary","foreign","survey",'labelled',"readxl", "tidyverse", "haven","rockchalk", "forcats")
+Packages <- c("sf","here","gtsummary","foreign","survey",'labelled',"readxl", 
+              "tidyverse", "haven","rockchalk", "forcats", "nnet",
+              "psycho", "sjPlot")
 
 
 new_packages <- Packages[!(Packages %in% installed.packages()[,"Package"])]
@@ -12,6 +17,9 @@ if(length(new_packages)) install.packages(new_packages, dependencies = T)
 lapply(Packages, require, character.only=T)
 
 df <- read_rds(here("data_selected_gis_new.rds"))
+
+table(df$high_blood_pressure)
+
 
 
 df <- df %>%
@@ -27,10 +35,12 @@ svy_dataset <- svydesign(
   nest = TRUE
 )
 
+svy_dataset$variables$high_blood_pressure <- as.factor(svy_dataset$variables$high_blood_pressure)
+svy_dataset$variables$blood_pressure_cat_numeric <- as.factor(svy_dataset$variables$blood_pressure_cat_numeric)
 
 # Specify categorical and continuous variables
 cat_vars <- c("hv104", "age_cat", "marital_status", "edu_cat", 
-              "wealth_cat", "blood_pressure_cat_new", "bmi_category", "hv025", "shecoreg")
+              "wealth_cat", "high_blood_pressure", "bmi_category_nr_ob", "hv025", "shecoreg")
 
 cont_vars <- c("hv105", "systolic_bp", "diastolic_bp", "new_bmi", "new_height", "new_weight")
 
@@ -112,7 +122,7 @@ svy_dataset$variables$edu_cat <- factor(svy_dataset$variables$edu_cat)
 svy_dataset$variables$wealth_cat <- factor(svy_dataset$variables$wealth_cat)
 
 
-str(svy_dataset)
+#str(svy_dataset)
 
 
 # set seed
@@ -122,51 +132,73 @@ table(svy_dataset$variables$blood_pressure_cat_numeric)
 
 
 # 
-table(svy_dataset$variables$bmi_category)
-
 svy_dataset$variables$age_cat <- relevel(svy_dataset$variables$age_cat, ref = "16-39")
 svy_dataset$variables$edu_cat <- relevel(svy_dataset$variables$edu_cat, ref = "No education")
 svy_dataset$variables$marital_status <- relevel(svy_dataset$variables$marital_status, ref = "Unmarried")
 svy_dataset$variables$wealth_cat <- relevel(svy_dataset$variables$wealth_cat, ref = "Poor")
 svy_dataset$variables$shecoreg <- relevel(svy_dataset$variables$shecoreg, ref = "terai")
-svy_dataset$variables$bmi_category <- factor(svy_dataset$variables$bmi_category, ordered = TRUE)   
+#svy_dataset$variables$bmi_category_nr_ob <- as.numeric(svy_dataset$variables$bmi_category_nr_ob)
+
+# Run logistic regression with survey design using binomial
+bmi_model <- svyglm(
+  bmi_category_nr_ob ~ 
+    hv104 +           # sex
+    age_cat +         # age categories
+    marital_status + 
+    edu_cat +         # education
+    wealth_cat +      # wealth
+    hv025 +           # urban/rural
+    high_blood_pressure +
+    shecoreg,         # ecological region
+    #PR_NAME,
+  design = svy_dataset,
+  family = binomial())  # changed to binomial
 
 
+tab_model(bmi_model)
 
+model_data <- sjPlot::get_model_data(bmi_model, type = "est")
 
-# 1. BMI Ordinal Logistic Regression
-bmi_model <- svyolr(bmi_category ~ 
-                      hv104 +      # sex
-                      age_cat +    # age categories
-                      marital_status + 
-                      edu_cat +    # education
-                      wealth_cat + # wealth
-                      hv025 +      # urban/rural
-                      shecoreg,    # ecological region
-                    design = svy_dataset)
-
-
+print(model_data)
 summary(bmi_model)
+#check multicollinearity
+vif(bmi_model)
 
+#Assess model fit
+# Hosmer-Lemeshow test for survey data
+residuals <- residuals(bmi_model, type = "deviance")
+fitted_values <- fitted(bmi_model)
+pseudo_r2 <- 1 - (bmi_model$deviance/bmi_model$null.deviance)
+print(round(pseudo_r2, 3))
+summary(residuals)
 
-#coef matrix
-coef_matrix1<- round(coef(summary(bmi_model)),3)
+#histogram of residuals
+hist(residuals, 
+     breaks = 30,  # number of bars
+     main = "Histogram of Deviance Residuals",
+     xlab = "Deviance Residuals",
+     ylab = "Frequency",
+     col = "lightblue",
+     border = "black")
+# Add a vertical line at zero
+abline(v = 0, col = "red", lty = 2)
+# Add density curve (optional)
+lines(density(residuals), col = "darkblue", lwd = 2)
 
-# Calculate p value
-p_bmi <- pnorm(abs(coef_matrix1[, "t value"]), lower.tail = F) * 2
+# Save to CSV
+write.csv(model_data, "bmi_model_results.csv")
+tab_model(bmi_model, file = "bmi_model_results.html")
 
-# odds calculation
-or1 <- round(coef(bmi_model),2)
+# 6. Get BMI model results
+# Get BMI model results
+bmi_results <- rbind(
+  coef = coef(bmi_model),
+  or = exp(coef(bmi_model)))
 
-#calculating ci
+ci = exp(confint(bmi_model))
 
-ci <- round(confint(bmi_model), 2)
-
-result_bmi <- cbind(round(exp(cbind(OR = or1, ci)), 2), "p-value"=round(p_bmi,3))
-
-
-#Print formatted results
-print(result_bmi)
+print(ci)
+print(bmi_results)
 
 
 
@@ -174,49 +206,63 @@ write.csv(result_bmi, "model_bmi.csv")
 
 
 
+# Converting character variables to factors
+df$age_cat <- as.factor(df$age_cat)
+df$marital_status <- as.factor(df$marital_status)
+df$edu_cat <- as.factor(df$edu_cat)
+df$wealth_cat <- as.factor(df$wealth_cat)
+df$bmi_category <- factor(df$bmi_category, ordered = FALSE)
+df$bmi_category <- relevel(df$bmi_category, ref = 2)
+svy_dataset$variables$age_cat <- relevel(svy_dataset$variables$age_cat, ref = "16-39")
+svy_dataset$variables$edu_cat <- relevel(svy_dataset$variables$edu_cat , ref = "No education")
 
-svy_dataset$variables$blood_pressure_cat_numeric <- factor(svy_dataset$variables$blood_pressure_cat_numeric, ordered = TRUE)
-table(svy_dataset$variables$blood_pressure_cat_numeric)
-svy_dataset$variables$bmi_category <- factor(svy_dataset$variables$bmi_category, ordered = FALSE)  # convert to unordered
-svy_dataset$variables$bmi_category <- relevel(svy_dataset$variables$bmi_category, ref = 1)
-svy_dataset$variables$hv104 <- relevel(svy_dataset$variables$hv104, ref = "female")
-
+#
 # HTN ordinal logistic regression model with survey weights
-htn_model <- svyolr(blood_pressure_cat_numeric ~ 
-                      hv104 +      # sex
-                      age_cat +    # age categories
-                      marital_status +
-                      bmi_category +
-                      edu_cat +    # education
-                      wealth_cat + # wealth
-                      hv025 +      # urban/rural
-                      shecoreg,    # ecological region
-                    design = svy_dataset)
+htn_model <-  svyglm(high_blood_pressure ~ 
+                        hv104 +      
+                        age_cat +    
+                        marital_status +
+                        bmi_category_nr_ob +
+                        edu_cat +    
+                        wealth_cat + 
+                        hv025 +
+                       #hv024+
+                        shecoreg,
+                      design = svy_dataset,
+                      family = binomial())
+
+
+vif(htn_model)
 
 summary(htn_model)
 
+tab_model(htn_model)
 
 
-#coef matrix
-coef_matrix2<- round(coef(summary(htn_model)),3)
-# Calculate p value
-p_htn <- pnorm(abs(coef_matrix2[, "t value"]), lower.tail = F) * 2
 
-# odds calculation
-or2 <- round(coef(htn_model),2)
 
-#calculating ci
 
-ci_htn <- round(confint(htn_model), 2)
 
-result_htn <- cbind(round(exp(cbind(OR = or2, ci_htn)), 2), "p-value"=round(p_htn,3))
+
+
+# 8. Get HTN model results
+htn_results <- list(
+  coef = coef(htn_model),
+  or = exp(coef(htn_model)),
+  ci = exp(confint(htn_model)))
+
+
+print(htn_results)
+
+tab_model(htn_model)
+
+tab_model(htn_model, file = "htn_model_results.html")
 
 
 #Print formatted results
 print(result_htn)
 
-write.csv(result_htn, "htn_model.csv")
-
+write.csv(a, "htn_model.csv")
 
 
 
