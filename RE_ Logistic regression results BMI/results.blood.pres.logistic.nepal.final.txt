@@ -1,0 +1,490 @@
+                                 _____________________________
+
+                                         SaTScan v9.6
+                                 _____________________________
+
+
+Program run on: Tue Nov 26 07:24:26 2024
+
+Purely Spatial analysis
+scanning for clusters with high or low rates
+using the Bernoulli model.
+_______________________________________________________________________________________________
+
+SUMMARY OF DATA
+
+Study period.......................: 2000/1/1 to 2000/12/31
+Number of locations................: 476
+Total population...................: 13540
+Total number of cases..............: 7308
+Percent cases in area..............: 54.0
+_______________________________________________________________________________________________
+
+CLUSTERS DETECTED
+
+1.Location IDs included.: Bajura416, Bajhang419, Bajhang421, Kalikot366, Kalikot365, Bajura415,
+                          Achham444, Achham445, Kalikot367, Bajhang418, Achham443, Bajhang420,
+                          Kalikot364, Dailekh374, Doti436, Kalikot368, Achham442, Mugu356,
+                          Dailekh372, Humla358, Achham447, Dailekh373, Doti439, Achham446,
+                          Achham448, Jumla363, Jumla362, Bajhang417, Doti440, Dailekh371
+  Overlap with clusters.: 4, 9
+  Coordinates / radius..: (29.417220 N, 81.453640 E) / 56.99 km
+  Gini Cluster..........: No
+  Population............: 866
+  Number of cases.......: 349
+  Expected cases........: 467.41
+  Observed / expected...: 0.75
+  Relative risk.........: 0.73
+  Percent cases in area.: 40.3
+  Log likelihood ratio..: 34.750378
+  P-value...............: 0.0000000000032
+
+2.Location IDs included.: Surkhet410, Surkhet409, Surkhet408, Surkhet407, Surkhet406,
+                          Surkhet402, Surkhet405, Surkhet411, Surkhet412, Surkhet401,
+                          Dailekh377, Dailekh376, Surkhet413, Dailekh375, Surkhet404,
+                          Surkhet403, Salyan398, Dailekh370, Surkhet400
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (28.597182 N, 81.646152 E) / 34.12 km
+  Gini Cluster..........: Yes
+  Population............: 519
+  Number of cases.......: 354
+  Expected cases........: 280.12
+  Observed / expected...: 1.26
+  Relative risk.........: 1.28
+  Percent cases in area.: 68.2
+  Log likelihood ratio..: 22.653306
+  P-value...............: 0.00000024
+
+3.Location IDs included.: Dhankuta17, Dhankuta16, Bhojpur15, Udayapur69, Morang43, Dhankuta18,
+                          Sunsari57, Sunsari65, Sunsari62, Terhathum20, Bhojpur14, Morang44,
+                          Sunsari64, Terhathum19, Sunsari61, Sunsari63, Sankhuwasabha4,
+                          Sunsari67, Sunsari58, Sunsari66, Morang42, Sankhuwasabha3, Sunsari60,
+                          Morang48, Morang54, Panchthar24, Morang46, Morang47, Morang45,
+                          Bhojpur13, Sunsari59, Morang49, Ilam28, Ilam27, Sunsari68, Morang51,
+                          Saptari74, Jhapa34, Morang56, Morang55, Khotang9, Jhapa36, Saptari82,
+                          Panchthar21, Jhapa35, Morang53, Morang50, Panchthar22, Morang52,
+                          Panchthar23, Saptari83, Sankhuwasabha2, Khotang11, Udayapur73,
+                          Jhapa33, Saptari81, Khotang10, Taplejung1, Ilam26
+  Overlap with clusters.: 6, 11, 23
+  Coordinates / radius..: (26.939213 N, 87.249258 E) / 67.90 km
+  Gini Cluster..........: No
+  Population............: 1769
+  Number of cases.......: 1085
+  Expected cases........: 954.79
+  Observed / expected...: 1.14
+  Relative risk.........: 1.16
+  Percent cases in area.: 61.3
+  Log likelihood ratio..: 22.412454
+  P-value...............: 0.00000030
+
+4.Location IDs included.: Achham445, Achham443, Achham444, Achham442, Achham447, Dailekh374,
+                          Kalikot366, Achham446, Achham448, Dailekh373, Kalikot367, Kalikot368,
+                          Dailekh372, Bajura416, Doti436, Surkhet414, Kalikot365, Bajhang421,
+                          Doti440, Doti439, Doti441, Dailekh371
+  Overlap with clusters.: 1
+  Coordinates / radius..: (29.158038 N, 81.329834 E) / 40.84 km
+  Gini Cluster..........: Yes
+  Population............: 580
+  Number of cases.......: 235
+  Expected cases........: 313.05
+  Observed / expected...: 0.75
+  Relative risk.........: 0.74
+  Percent cases in area.: 40.5
+  Log likelihood ratio..: 22.038275
+  P-value...............: 0.00000043
+
+5.Location IDs included.: Rautahat126, Rautahat125, Sarlahi119, Sarlahi118, Rautahat124,
+                          Rautahat122, Bara132, Rautahat123, Bara133, Rautahat121, Sarlahi117,
+                          Sarlahi120, Bara135, Bara134, Bara131, Bara128, Sarlahi116,
+                          Sarlahi115, Bara130
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (26.800678 N, 85.276429 E) / 35.14 km
+  Gini Cluster..........: Yes
+  Population............: 629
+  Number of cases.......: 266
+  Expected cases........: 339.49
+  Observed / expected...: 0.78
+  Relative risk.........: 0.78
+  Percent cases in area.: 42.3
+  Log likelihood ratio..: 18.068927
+  P-value...............: 0.000017
+
+6.Location IDs included.: Morang50, Morang52, Morang51, Morang53, Morang56, Morang45, Morang46,
+                          Jhapa35, Jhapa36, Morang47, Morang49, Jhapa34, Morang48, Morang55
+  Overlap with clusters.: 3
+  Coordinates / radius..: (26.476489 N, 87.567126 E) / 27.11 km
+  Gini Cluster..........: Yes
+  Population............: 462
+  Number of cases.......: 310
+  Expected cases........: 249.36
+  Observed / expected...: 1.24
+  Relative risk.........: 1.25
+  Percent cases in area.: 67.1
+  Log likelihood ratio..: 17.016898
+  P-value...............: 0.000045
+
+7.Location IDs included.: Pyuthan290, Pyuthan291, Pyuthan292, Pyuthan289, Rolpa288, Dang330,
+                          Dang332, Dang331, Dang334
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (28.119706 N, 82.718668 E) / 34.83 km
+  Gini Cluster..........: Yes
+  Population............: 272
+  Number of cases.......: 186
+  Expected cases........: 146.81
+  Observed / expected...: 1.27
+  Relative risk.........: 1.27
+  Percent cases in area.: 68.4
+  Log likelihood ratio..: 11.951534
+  P-value...............: 0.0050
+
+8.Location IDs included.: Bardiya353, Bardiya347, Bardiya348, Bardiya352, Bardiya350, Banke342,
+                          Banke344, Banke343, Bardiya349, Banke345, Banke341, Bardiya351
+  Overlap with clusters.: No Overlap
+  Coordinates / radius..: (28.220778 N, 81.433449 E) / 40.26 km
+  Gini Cluster..........: Yes
+  Population............: 345
+  Number of cases.......: 143
+  Expected cases........: 186.21
+  Observed / expected...: 0.77
+  Relative risk.........: 0.76
+  Percent cases in area.: 41.4
+  Log likelihood ratio..: 11.146050
+  P-value...............: 0.010
+
+9.Location IDs included.: Bajhang417, Bajhang420
+  Overlap with clusters.: 1
+  Coordinates / radius..: (29.643475 N, 80.956327 E) / 17.16 km
+  Gini Cluster..........: Yes
+  Population............: 77
+  Number of cases.......: 22
+  Expected cases........: 41.56
+  Observed / expected...: 0.53
+  Relative risk.........: 0.53
+  Percent cases in area.: 28.6
+  Log likelihood ratio..: 10.234678
+  P-value...............: 0.023
+
+10.Location IDs included.: Makawanpur211, Makawanpur212, Makawanpur213, Makawanpur210,
+                           Dhading159, Gorkha229, Dhading158, Nuwakot165, Dhading160,
+                           Dhading161, Dhading157, Chitawan216, Chitawan221, Dhading156,
+                           Kathmandu179, Makawanpur214, Chitawan219, Kathmandu182,
+                           Kathmandu175, Lalitpur192, Kathmandu180, Kathmandu181, Lalitpur190,
+                           Kathmandu184
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (27.645043 N, 84.866626 E) / 44.26 km
+   Gini Cluster..........: Yes
+   Population............: 646
+   Number of cases.......: 403
+   Expected cases........: 348.67
+   Observed / expected...: 1.16
+   Relative risk.........: 1.16
+   Percent cases in area.: 62.4
+   Log likelihood ratio..: 9.787043
+   P-value...............: 0.033
+
+11.Location IDs included.: Sankhuwasabha4, Sankhuwasabha3, Terhathum19, Dhankuta16, Bhojpur13,
+                           Bhojpur15, Terhathum20, Dhankuta17, Bhojpur14, Panchthar21,
+                           Taplejung1, Dhankuta18, Sankhuwasabha2, Panchthar22, Panchthar24,
+                           Udayapur69, Morang43, Khotang9, Panchthar23, Ilam27, Morang42,
+                           Sunsari57, Sunsari65, Khotang10
+   Overlap with clusters.: 3
+   Coordinates / radius..: (27.228057 N, 87.344170 E) / 59.63 km
+   Gini Cluster..........: Yes
+   Population............: 671
+   Number of cases.......: 417
+   Expected cases........: 362.16
+   Observed / expected...: 1.15
+   Relative risk.........: 1.16
+   Percent cases in area.: 62.1
+   Log likelihood ratio..: 9.612425
+   P-value...............: 0.043
+
+12.Location IDs included.: Sarlahi111, Sarlahi112
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (27.031481 N, 85.640625 E) / 6.32 km
+   Gini Cluster..........: No
+   Population............: 63
+   Number of cases.......: 49
+   Expected cases........: 34.00
+   Observed / expected...: 1.44
+   Relative risk.........: 1.44
+   Percent cases in area.: 77.8
+   Log likelihood ratio..: 7.742660
+   P-value...............: 0.230
+
+13.Location IDs included.: Rupandehi322, Rupandehi317, Rupandehi321, Rupandehi316,
+                           Rupandehi318, Rupandehi314, Rupandehi315, Rupandehi311,
+                           Rupandehi313, Rupandehi312, Kapilbastu323, Rupandehi320,
+                           Rupandehi319, Kapilbastu329, Kapilbastu324, Parasi308, Palpa304,
+                           Parasi309, Arghakhanchi300, Parasi306, Palpa303, Palpa302,
+                           Arghakhanchi301, Parasi307, Kapilbastu325, Parasi310, Kapilbastu328,
+                           Syangja271, Syangja272, Arghakhanchi298, Kapilbastu327, Syangja270,
+                           Nawalpur265, Arghakhanchi299, Gulmi293, Nawalpur264, Kapilbastu326
+   Overlap with clusters.: 19, 20
+   Coordinates / radius..: (27.536509 N, 83.341045 E) / 60.54 km
+   Gini Cluster..........: No
+   Population............: 1155
+   Number of cases.......: 563
+   Expected cases........: 623.39
+   Observed / expected...: 0.90
+   Relative risk.........: 0.90
+   Percent cases in area.: 48.7
+   Log likelihood ratio..: 6.925198
+   P-value...............: 0.436
+
+14.Location IDs included.: Jumla360, Dolpa354, Jumla359
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (29.153645 N, 82.368406 E) / 23.04 km
+   Gini Cluster..........: No
+   Population............: 65
+   Number of cases.......: 49
+   Expected cases........: 35.08
+   Observed / expected...: 1.40
+   Relative risk.........: 1.40
+   Percent cases in area.: 75.4
+   Log likelihood ratio..: 6.386837
+   P-value...............: 0.597
+
+15.Location IDs included.: Mahottari105, Mahottari107, Mahottari106, Mahottari103,
+                           Mahottari108, Mahottari104, Mahottari109, Dhanusha101, Sarlahi114
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (26.745208 N, 85.781572 E) / 18.20 km
+   Gini Cluster..........: No
+   Population............: 286
+   Number of cases.......: 125
+   Expected cases........: 154.36
+   Observed / expected...: 0.81
+   Relative risk.........: 0.81
+   Percent cases in area.: 43.7
+   Log likelihood ratio..: 6.175564
+   P-value...............: 0.663
+
+16.Location IDs included.: Baglung279, Baglung280, Baglung281
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (28.321176 N, 83.098679 E) / 14.70 km
+   Gini Cluster..........: No
+   Population............: 80
+   Number of cases.......: 28
+   Expected cases........: 43.18
+   Observed / expected...: 0.65
+   Relative risk.........: 0.65
+   Percent cases in area.: 35.0
+   Log likelihood ratio..: 5.855176
+   P-value...............: 0.765
+
+17.Location IDs included.: Kaski235, Parbat274, Parbat273, Parbat276, Parbat275, Kaski236,
+                           Syangja269, Kaski243, Kaski242
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (28.273786 N, 83.771685 E) / 20.33 km
+   Gini Cluster..........: No
+   Population............: 214
+   Number of cases.......: 139
+   Expected cases........: 115.50
+   Observed / expected...: 1.20
+   Relative risk.........: 1.21
+   Percent cases in area.: 65.0
+   Log likelihood ratio..: 5.382642
+   P-value...............: 0.878
+
+18.Location IDs included.: Kanchanpur473, Kanchanpur472
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (28.636402 N, 80.473586 E) / 7.46 km
+   Gini Cluster..........: No
+   Population............: 57
+   Number of cases.......: 42
+   Expected cases........: 30.76
+   Observed / expected...: 1.37
+   Relative risk.........: 1.37
+   Percent cases in area.: 73.7
+   Log likelihood ratio..: 4.707563
+   P-value...............: 0.986
+
+19.Location IDs included.: Kapilbastu325, Kapilbastu327, Kapilbastu328, Kapilbastu326,
+                           Kapilbastu324
+   Overlap with clusters.: 13
+   Coordinates / radius..: (27.636012 N, 82.883349 E) / 16.44 km
+   Gini Cluster..........: No
+   Population............: 168
+   Number of cases.......: 71
+   Expected cases........: 90.68
+   Observed / expected...: 0.78
+   Relative risk.........: 0.78
+   Percent cases in area.: 42.3
+   Log likelihood ratio..: 4.680990
+   P-value...............: 0.987
+
+20.Location IDs included.: Parasi309, Parasi306, Parasi307, Rupandehi320, Rupandehi319,
+                           Parasi310, Parasi308, Nawalpur265, Rupandehi321, Rupandehi318,
+                           Rupandehi317, Rupandehi314
+   Overlap with clusters.: 13
+   Coordinates / radius..: (27.484166 N, 83.687901 E) / 29.50 km
+   Gini Cluster..........: No
+   Population............: 406
+   Number of cases.......: 190
+   Expected cases........: 219.13
+   Observed / expected...: 0.87
+   Relative risk.........: 0.86
+   Percent cases in area.: 46.8
+   Log likelihood ratio..: 4.319760
+   P-value...............: 0.996
+
+21.Location IDs included.: Chitawan217
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (27.683377 N, 84.411143 E) / 0 km
+   Gini Cluster..........: No
+   Population............: 29
+   Number of cases.......: 8
+   Expected cases........: 15.65
+   Observed / expected...: 0.51
+   Relative risk.........: 0.51
+   Percent cases in area.: 27.6
+   Log likelihood ratio..: 4.156047
+   P-value...............: 0.997
+
+22.Location IDs included.: Baitadi427, Darchula425, Baitadi426, Darchula424
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (29.629106 N, 80.523977 E) / 15.65 km
+   Gini Cluster..........: No
+   Population............: 111
+   Number of cases.......: 45
+   Expected cases........: 59.91
+   Observed / expected...: 0.75
+   Relative risk.........: 0.75
+   Percent cases in area.: 40.5
+   Log likelihood ratio..: 4.055799
+   P-value...............: 0.998
+
+23.Location IDs included.: Saptari82, Saptari83, Saptari81, Saptari74, Sunsari59
+   Overlap with clusters.: 3
+   Coordinates / radius..: (26.527954 N, 86.867044 E) / 15.22 km
+   Gini Cluster..........: No
+   Population............: 150
+   Number of cases.......: 98
+   Expected cases........: 80.96
+   Observed / expected...: 1.21
+   Relative risk.........: 1.21
+   Percent cases in area.: 65.3
+   Log likelihood ratio..: 4.023787
+   P-value...............: 0.998
+
+24.Location IDs included.: Dadeldhura433, Dadeldhura434, Dadeldhura432
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (29.311674 N, 80.583305 E) / 14.96 km
+   Gini Cluster..........: No
+   Population............: 76
+   Number of cases.......: 53
+   Expected cases........: 41.02
+   Observed / expected...: 1.29
+   Relative risk.........: 1.29
+   Percent cases in area.: 69.7
+   Log likelihood ratio..: 3.958397
+   P-value...............: 0.998
+
+25.Location IDs included.: Kaski237
+   Overlap with clusters.: No Overlap
+   Coordinates / radius..: (28.228728 N, 83.990587 E) / 0 km
+   Gini Cluster..........: No
+   Population............: 26
+   Number of cases.......: 7
+   Expected cases........: 14.03
+   Observed / expected...: 0.50
+   Relative risk.........: 0.50
+   Percent cases in area.: 26.9
+   Log likelihood ratio..: 3.922388
+   P-value...............: 0.998
+_______________________________________________________________________________________________
+
+PARAMETER SETTINGS
+
+Input
+-----
+  Case File        : C:\Users\cvarga\Cases.cas
+  Control File     : C:\Users\cvarga\Controls.ctl
+  Time Precision   : None
+  Start Time       : 2000/1/1
+  End Time         : 2000/12/31
+  Coordinates File : C:\Users\cvarga\Coordinates.geo
+  Coordinates      : Latitude/Longitude
+
+Analysis
+--------
+  Type of Analysis    : Purely Spatial
+  Probability Model   : Bernoulli
+  Scan for Areas with : High or Low Rates
+
+Output
+------
+  Main Results File       : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.txt
+  Cluster File            : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.col.txt
+  Google Earth File       : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.kml
+  Google Maps File        : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.clustermap.html
+  Shapefile               : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.clustermap.col.shp
+  Cartesian Graph File    : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.html
+  Cluster File            : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.col.dbf
+  Stratified Cluster File : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.sci.txt
+  Stratified Cluster File : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.sci.dbf
+  Location File           : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.gis.txt
+  Location File           : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.gis.dbf
+  Risk Estimates File     : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.rr.txt
+  Risk Estimates File     : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.rr.dbf
+  Simulated LLRs File     : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.llr.txt
+  Simulated LLRs File     : C:\Users\cvarga\Desktop\Nepal.Map\Biraj\Nov.2024\Blood.Pres.Logistic\Blood.Pres.Log.FINAL\Results\results.blood.pres.logistic.nepal.final.cluster.llr.dbf
+
+Data Checking
+-------------
+  Temporal Data Check     : Check to ensure that all cases and controls are within the specified temporal study period.
+  Geographical Data Check : Check to ensure that all observations (cases, controls and populations) are within the specified geographical area.
+
+Spatial Neighbors
+-----------------
+  Use Non-Euclidian Neighbors file : No
+  Use Meta Locations File          : No
+  Multiple Coordinates Type        : Allow only one set of coordinates per location ID.
+
+Spatial Window
+--------------
+  Maximum Spatial Cluster Size : 25 percent of population at risk
+  Window Shape                 : Circular
+  Isotonic Scan                : No
+
+Cluster Restrictions
+--------------------
+  Minimum Cases in Cluster for High Rates : 2
+  Restrict High Rate Clusters             : No
+  Restrict Low Rate Clusters              : No
+
+Inference
+---------
+  P-Value Reporting                  : Default Combination
+  Number of Replications             : 999
+  Adjusting for More Likely Clusters : No
+
+Spatial Output
+--------------
+  Automatically Launch Map                  : Yes
+  Compress KML File into KMZ File           : No
+  Include All Location IDs in the Clusters  : Yes
+  Cluster Location Threshold - Separate KML : 1000
+  Report Hierarchical Clusters              : Yes
+  Criteria for Reporting Secondary Clusters : No Geographical Overlap
+  Report Gini Optimized Cluster Collection  : Yes
+  Gini Index Based Collection Reporting     : Optimal Only
+  Report Gini Index Cluster Coefficents     : No
+  Restrict Reporting to Smaller Clusters    : No
+
+Other Output
+------------
+  Report Critical Values     : No
+  Report Monte Carlo Rank    : No
+  Print ASCII Column Headers : No
+
+Run Options
+-----------
+  Processor Usage   : All Available Processors
+  Suppress Warnings : No
+  Logging Analysis  : No
+_______________________________________________________________________________________________
+
+Program completed  : Tue Nov 26 07:24:29 2024
+Total Running Time : 3 seconds
+Processor Usage    : 8 processors
