@@ -151,7 +151,7 @@ bmi_model <- svyglm(
   design = svy_dataset,
   family = binomial())  # changed to binomial
 
-
+summary(bmi_model)
 tab_model(bmi_model)
 
 model_data <- sjPlot::get_model_data(bmi_model, type = "est")
